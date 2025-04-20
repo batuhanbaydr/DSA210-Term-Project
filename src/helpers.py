@@ -1,3 +1,4 @@
+# Batuhan Baydar 32165 - DSA210
 import os, requests, time, functools
 from dotenv import load_dotenv
 
