@@ -1,4 +1,14 @@
 # Batuhan Baydar 32165 - DSA210
+
+
+# collect.py
+# Build one clean parquet file:
+
+# 1. read academy_awards.xlsx  (from Kaggle, placed in data/raw)
+# 2. merge Bechdel Test ratings (bechdeltest.com API dump)
+# 3. add political_theme flag for films 2000+   (uses helpers.py)
+# 4. save to data/processed/oscars_plus_bechdel_pol.parquet
+
 import pathlib, json, requests, pandas as pd, re, unicodedata
 from helpers import tmdb_keywords_and_genres
 
@@ -8,7 +18,7 @@ PROC   = ROOT / "data" / "processed"
 RAW.mkdir(parents=True, exist_ok=True)
 PROC.mkdir(parents=True, exist_ok=True)
 
-# Kaggle
+# read Kaggle excel
 xl_path = RAW / "academy_awards.xlsx"
 if not xl_path.exists():
     raise FileNotFoundError(
@@ -20,7 +30,7 @@ osc = (
     osc.assign(film=lambda d: d["film"].astype(str).str.strip(), winner=lambda d: d["winner"].astype(bool))
 )
 
-# Bechdel
+# merge Bechdel pass flag
 bech_file = RAW / "bechdel.json"
 if not bech_file.exists():
     url = "https://bechdeltest.com/api/v1/getAllMovies"
@@ -34,7 +44,7 @@ bech["title_key"] = bech["title"].apply(norm)
 bech["bechdel_pass"] = bech["rating"] >= 3
 osc = osc.merge(bech[["title_key", "bechdel_pass"]], on="title_key", how="left")
 
-# Political Theme
+# merge Political Theme flag
 
 KEYWORD_HITS = {
     "politics", "political", "civil rights", "revolution", "activism", "racism", "equality", "feminism", "colonialism", "propaganda", "campaign", "trans", "transexual", "transgender", "black rights", "lgbt", "gay theme", "diversity", "inclusion", "social justice", "gender identity", "non-binary", "intersectionality", "patriarchy", "white privilege", "systemic racism", "queer", "pride", "gender equality", "minority rights", "social movement", "identity politics", "anti-racism", "gender studies", "cultural appropriation", "allyship", "microaggressions", "equity", "social change", "progressive", "woke", "social commentary", "rebellion"
@@ -47,6 +57,8 @@ for idx, row in osc[mask].iterrows():
     kw, gen = tmdb_keywords_and_genres(row.film, int(row.year_ceremony))
     osc.at[idx, "political_theme"] = bool(set(kw) & KEYHITS or set(gen) & GENHITS)
 
+
+# save parquet
 out = PROC / "oscars_plus_bechdel_pol.parquet"
 osc.to_parquet(out, index=False)
 print("It's saved", out, "— rows:", len(osc))
