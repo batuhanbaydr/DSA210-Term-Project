@@ -30,12 +30,14 @@ Rows = 10 856 Bechdel matches = 5 810 Political films = 614
 
 ### Key χ² Results
 
+## Phase 2 — Hypothesis‑test summary
+
 | Test | χ² | p‑value | Interpretation |
 |------|----|---------|----------------|
-| Bechdel pass × Winner | **0.74** | 0.391 | Not significant – Bechdel pass does not affect winning |
-| Political theme × Winner | **13.12** | 0.00029 | Significant – political films win more often |
-| Racial shift Nominees (pre‑2000 vs 2000+) | **235.16** | 1.06 × 10⁻⁵⁰ | Significant – nominee racial mix changed |
-| Racial shift Winners (pre‑2000 vs 2000+) | **107.99** | 2.97 × 10⁻²³ | Significant – winner racial mix changed |
+| *H₀:* Bechdel outcome and winning are independent. <br>*H₁:* Bechdel outcome and winning are **not** independent. | **0.74** | 0.391 | Not significant – Bechdel pass does not affect winning |
+| *H₀:* Political theme and winning are independent. <br>*H₁:* Political theme and winning are **not** independent. | **13.12** | 0.00029 | Significant – political films win more often |
+| *H₀:* Race distribution is the same before and after 2000. <br>*H₁:* Race distribution differs between periods. | **235.16** | 1.06 × 10⁻⁵⁰ | Significant – nominee racial mix changed |
+| *H₀:* Race distribution of winners is the same before and after 2000. <br>*H₁:* Race distribution differs between periods. | **107.99** | 2.97 × 10⁻²³ | Significant – winner racial mix changed |
 
 ### Visual Insights
 * Nominee counts fairly stable per decade; big spike 1940s.  
