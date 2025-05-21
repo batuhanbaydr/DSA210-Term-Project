@@ -46,3 +46,19 @@ Rows = 10 856 Bechdel matches = 5 810 Political films = 614
 * Win rate ~22 % overall; rises to ~28 % for political films.
 
 **Sources:** Kaggle Academy Awards XLSX · BechdelTest API v1 · TMDB API (keywords + genres)  
+
+## Phase 3 — Machine Learning (23 May 2025)
+
+**Goal:** Predict whether an Oscar-nominated film will win using only pre-award information.
+
+| Model | Accuracy | ROC-AUC | Recall (Winner) |
+|-------|----------|---------|-----------------|
+| Logistic Regression (balanced) | 0.60 | 0.71 | 0.46 |
+| Random Forest (300 × depth 8, balanced) | **0.66** | **0.74** | **0.59** |
+
+*Class-imbalance addressed via `class_weight="balanced"`.  
+Numeric features were standardised; categoricals one-hot encoded.*
+
+Full code, confusion matrices and feature importances are in  
+[`notebooks/Results_Phase3.ipynb`](notebooks/Results_Phase3.ipynb).
+
