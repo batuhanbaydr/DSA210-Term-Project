@@ -60,5 +60,5 @@ Rows = 10 856 Bechdel matches = 5 810 Political films = 614
 Numeric features were standardised; categoricals one-hot encoded.*
 
 Full code, confusion matrices and feature importances are in  
-[`notebooks/Results_Phase3.ipynb`](notebooks/Results_Phase3.ipynb).
+[`notebooks/Results_Phase3.ipynb`](notebooks/Phase3_Results.ipynb).
 
