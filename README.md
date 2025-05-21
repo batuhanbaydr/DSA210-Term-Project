@@ -47,7 +47,7 @@ Rows = 10 856 Bechdel matches = 5 810 Political films = 614
 
 **Sources:** Kaggle Academy Awards XLSX · BechdelTest API v1 · TMDB API (keywords + genres)  
 
-## Phase 3 — Machine Learning (23 May 2025)
+## Phase 3 — Machine Learning
 
 **Goal:** Predict whether an Oscar-nominated film will win using only pre-award information.
 
