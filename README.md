@@ -121,6 +121,27 @@ Full notebook: [`notebooks/Results_Phase3.ipynb`](notebooks/Results_Phase3.ipynb
 
 ---
 
+### Regression — “How many nominations will a film get?”
+
+We fitted a simple linear model to predict the **number of nominations** a movie receives.
+
+| Model | R² | MAE |
+|-------|----|-----|
+| Linear Regression | 0.01 | 18.343 |
+
+
+
+<p align="center">
+  <img src="fig/reg_coef.png" width="450">
+</p>
+
+* Belonging to the broad “Other” category group **reduces** expected nominations (fewer headline awards).  
+* Passing the **Bechdel test** or being a **Picture** contender each adds roughly **½ nomination** on average.  
+* Films with a **political theme** also see a small positive bump.  
+* Earlier decades still predict fewer total nominations because there were simply fewer award categories.
+</details>
+
+
 ## Key Take-aways from ML
 
 * Oscar diversity is **measurably improving**—both in nominees and winners.  
