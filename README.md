@@ -144,7 +144,7 @@ We fitted a simple linear model to predict the **number of nominations** a movie
 
 ### Unsupervised Clustering
 
-| <img src="fig/kmeans_elbow.png" width="350"> | <img src="fig/kmeans_pairplot.png" width="350"> |
+| <img src="fig/kmeans_elbow.png" width="350"> | <img src="fig/k_means_pairplot.png" width="350"> |
 |:--:|:--:|
 | *Elbow plot (best k≈3)* | *Pairplot coloured by cluster* |
 
