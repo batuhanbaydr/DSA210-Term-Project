@@ -135,11 +135,26 @@ We fitted a simple linear model to predict the **number of nominations** a movie
   <img src="fig/reg_coef.png" width="450">
 </p>
 
-* Belonging to the broad “Other” category group **reduces** expected nominations (fewer headline awards).  
-* Passing the **Bechdel test** or being a **Picture** contender each adds roughly **½ nomination** on average.  
-* Films with a **political theme** also see a small positive bump.  
-* Earlier decades still predict fewer total nominations because there were simply fewer award categories.
+* Movies in the catch-all **“Other” category group** actually receive **~7 more nominations** on average (this group includes technical awards, hence the boost).  
+* Passing the **Bechdel test** is associated with **~4 fewer nominations** (likely because many big technical categories still skew male-led).  
+* Being in the **Best Picture** race also reduces the raw count (a Picture nominee cannot appear in acting categories multiple times).  
+* Films with a **political theme** show a small negative effect on total nomination count.  
+* Earlier decades still predict fewer nominations overall, because the Academy had fewer award categories in those years.
 </details>
+
+### Unsupervised Clustering
+
+| <img src="fig/kmeans_elbow.png" width="350"> | <img src="fig/kmeans_pairplot.png" width="350"> |
+|:--:|:--:|
+| *Elbow plot (best k≈3)* | *Pairplot coloured by cluster* |
+
+| Cluster | Political % | Bechdel % | Win % | Label |
+|---------|------------:|----------:|------:|-------|
+| 0 | 5 | 0 | 0 | “Traditional losers” |
+| 1 | 7 | 0 | **100** | “Traditional winners” |
+| 2 | 7 | **100** | 23 | “Modern Bechdel films” |
+
+> **Take-away:** Bechdel-passing films form their own cluster with a higher-than-average win rate, but true guaranteed winners (Cluster 1) are still mostly non-political and male-centric, hinting that prestige categories remain conservative.
 
 
 ## Key Take-aways from ML
@@ -148,6 +163,9 @@ We fitted a simple linear model to predict the **number of nominations** a movie
 * Politically themed films roughly **double** their odds of winning.  
 * A lightweight Random Forest, fed only public metadata, achieves **0.74 ROC-AUC** in forecasting winners.  
 * The Academy Awards remain time-dependent: early decades are incomparable to modern ones.
+* Even though our regression explains little of the variance (R² ≈ 0.01), it highlights how technical “Other” categories dominate raw nomination counts.  
+* K-Means reveals a new cluster of modern, Bechdel-passing films that win slightly more often, but the absolute “sure winners” cluster is still mostly non-political.
+
 
 
 
